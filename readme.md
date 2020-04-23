@@ -15,7 +15,7 @@ The Bolt plans and tasks in this repo will install and manage the configurations
 ## Setup for use
 
 
-1. To use repo modules, clone or download code to Boltdir directory.
+1. To use repo modules, clone or download code to Boltdir/site-modules/nessusagent directory.
 2. Save inventory.yaml file for the environment into the same Boltdir directory.
 3. Download OS agents into the Boltdir/site-modules/nessusagent/files directory from Tenable.io download page https://www.tenable.com/downloads/nessus-agents
 
