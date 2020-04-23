@@ -30,21 +30,21 @@ The Bolt plans and tasks in this repo will install and manage the configurations
 
 To use the plan run `bolt plan run nessusagent::agentinstall' with a source location of the Nessus Agent file to install and a filepath for the destination of the file for download and installation.   You will need to specify the source and filepath for nix nodes, windows nodes, or both.  The parameters to use to specify these are;
 
-### Parameters for Windows
+#### Parameters for Windows
 
     winsource (Optional[String]) 
         - specified as winsource=nessusagent/<file to use> 
     winfilepath (Optional[String]) 
         - specified as winfilepath="path to download to on remote host" - e.g. "c:\windows\temp\<filename>" 
     
-### Parameters for Linux
+#### Parameters for Linux
 
     nixsource (Optional[String]) 
         - specified as nixsource=nessusagent/<file to use> 
     nixfilepath (Optional[String]) 
         - specified as nixfilepath="/path/to/download/to" - e.g. "/home/centos/<filename>"
 
-### Required Parameters
+#### Required Parameters
 
     key (String) - specified as key=<use your Tenable linking key>
 
