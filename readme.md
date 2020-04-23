@@ -50,19 +50,19 @@ To use the plan run `bolt plan run nessusagent::agentinstall' with a source loca
 
 ## Examples
 
-### **Install and link on Linux targets**
+#### **Install and link on Linux targets**
 
 ```
 bolt plan run nessusagent::agentinstall targets=linux nixsource=nessusagent/NessusAgent-7.6.2-es7.x86_64.rpm nixfilepath="/home/centos/NessusAgent-7.6.2-es7.x86_64.rpm" key=<use your Tenable linking key>
 ```
 
-### **Install and link on Windows targets**
+#### **Install and link on Windows targets**
 
 ```
 bolt plan run nessusagent::agentinstall targets=windows winsource=nessusagent/NessusAgent-7.6.1-x64.msi winfilepath="c:\windows\temp\NessusAgent-7.6.1-x64.msi" key=<use your Tenable linking key>
 ```
 
-### **Install and link on both targets**
+#### **Install and link on both targets**
 
 ```
 bolt plan run nessusagent::agentinstall targets=windows,linux winsource=nessusagent/NessusAgent-7.6.1-x64.msi winfilepath="c:\windows\temp\NessusAgent-7.6.1-x64.msi" nixsource=nessusagent/NessusAgent-7.6.2-es7.x86_64.rpm nixfilepath="/home/centos/NessusAgent-7.6.2-es7.x86_64.rpm" key=<use your Tenable linking key>
