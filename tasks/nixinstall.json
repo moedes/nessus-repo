@@ -1,0 +1,15 @@
+{
+    "description": "This will install the specified Nessus Agent on a *nix machine",
+    "input_method": "environment",
+    "parameters": {
+        "key":{
+            "description": "The key needed to connect to Tenable cloud ",
+            "type": "String"
+        },
+        "nixfilepath": {
+            "description": "The path of to the install file",
+            "type": "String"
+
+        }
+    }
+}
