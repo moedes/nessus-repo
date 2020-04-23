@@ -19,7 +19,7 @@ The Bolt plans and tasks in this repo will install and manage the configurations
 
     ```
     mod 'nessusagent',
-       :git => 'https://github.com/moedes/nessus-repo'
+        :git => 'https://github.com/moedes/nessus-repo'
     ```
 
 2. Save inventory.yaml file for the environment into the same Boltdir directory.
