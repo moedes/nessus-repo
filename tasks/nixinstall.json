@@ -3,13 +3,30 @@
     "input_method": "environment",
     "parameters": {
         "key":{
-            "description": "The key needed to connect to Tenable cloud ",
+            "description": "The linking key for your Tenable instance",
             "type": "String"
         },
         "nixfilepath": {
-            "description": "The path of to the install file",
+            "description": "The path to the install file",
             "type": "String"
-
+        },
+        "nessus_group": {
+            "description": "The Tenable Host Group to which the agents should be added",
+            "type": "Optional[String]"
+        },
+        "nessus_name": {
+            "description": "An optional name to pass to your Temable instance for the node on which the agent is being installed",
+            "type": "Optional[String]"
+        },
+        "port": {
+            "description": "The port used by the Tenable instance",
+            "type": "Optional[String]",
+            "default": "443"
+        },
+        "host": {
+            "description": "The Tenable instance host address to which the agent should connect",
+            "type": "Optional[String]",
+            "default": "cloud.tenable.com"
         }
     }
 }
