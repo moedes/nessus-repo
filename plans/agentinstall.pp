@@ -1,4 +1,4 @@
-plan nessusrepo::agentinstall(
+plan nessusagent::agentinstall(
   TargetSpec           $targets,
   Optional[String]     $winsource = undef,
   Optional[String]     $winfilepath = undef,
@@ -14,12 +14,12 @@ plan nessusrepo::agentinstall(
   $centos_targets = get_targets($targets).filter |$centos| {$centos.facts['os']['name'] == 'CentOS'}
   $windows_targets = get_targets($targets).filter |$win| {$win.facts['os']['name'] == "windows"}
 
- if $nixsource {
+ if $nixsource and $nixfilepath {
    
    upload_file($nixsource, $nixfilepath, $centos_targets, "Uploading to... ${nixfilepath}")
 
    run_task(
-     'nessusrepo::nixinstall',
+     'nessusagent::nixinstall',
      $centos_targets,
      key => $key,
      host => $host,
@@ -27,12 +27,12 @@ plan nessusrepo::agentinstall(
      nixfilepath => $nixfilepath)
  }
   
- if $winsource {
+ if $winsource and $winfilepath{
     
   upload_file($winsource, $winfilepath, $windows_targets, "Uploading to... ${winfilepath}")
 
   run_task(
-     'nessusrepo::wininstall',
+     'nessusagent::wininstall',
      $windows_targets,
      installfilepath => $winfilepath,
      #nessus_server => "$host:$port",
