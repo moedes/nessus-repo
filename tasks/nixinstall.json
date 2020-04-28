@@ -15,7 +15,7 @@
             "type": "Optional[String]"
         },
         "nessus_name": {
-            "description": "An optional name to pass to your Temable instance for the node on which the agent is being installed",
+            "description": "An optional name to pass to your Tenable instance for the node on which the agent is being installed",
             "type": "Optional[String]"
         },
         "port": {
