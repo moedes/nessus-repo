@@ -30,7 +30,7 @@ plan nessusagent::agentinstall(
    #  nixfilepath => $nixfilepath)
  }
   
- if $winsource and $winfilepath {
+ #if $winsource and $winfilepath {
     
   #upload_file($winsource, $winfilepath, $windows_targets, "Uploading to... ${winfilepath}")
 
