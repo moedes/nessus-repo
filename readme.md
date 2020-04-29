@@ -22,11 +22,11 @@ The Bolt plans and tasks in this repo will install and manage the configurations
         :git => 'https://github.com/moedes/nessus-repo'
     ```
 
-2. Save inventory.yaml file for the environment into the same Boltdir directory.
-3. Download OS agents into the Boltdir/site-modules/nessusagent/files directory from Tenable.io download page https://www.tenable.com/downloads/nessus-agents
+2. Run ```bolt puppetfile install``` from the Boltdir directory where the Puppetfile is located.
+3. Save inventory.yaml file for the environment into the same Boltdir directory.
+4. Download OS agents into the Boltdir/site-modules/nessusagent/files directory from Tenable.io download page https://www.tenable.com/downloads/nessus-agents
 
 ## Bolt Plan Use
-
 
 To use the plan run `bolt plan run nessusagent::agentinstall' with a source location of the Nessus Agent file to install and a filepath for the destination of the file for download and installation.   You will need to specify the source and filepath for nix nodes, windows nodes, or both.  The parameters to use to specify these are;
 
@@ -48,7 +48,7 @@ To use the plan run `bolt plan run nessusagent::agentinstall' with a source loca
 
     key (String) - specified as key=<use your Tenable linking key>
 
-## Examples
+## Plan Use Examples
 
 #### **Install and link on Linux targets**
 
@@ -66,4 +66,24 @@ bolt plan run nessusagent::agentinstall targets=windows winsource=nessusagent/Ne
 
 ```
 bolt plan run nessusagent::agentinstall targets=windows,linux winsource=nessusagent/NessusAgent-7.6.1-x64.msi winfilepath="c:\windows\temp\NessusAgent-7.6.1-x64.msi" nixsource=nessusagent/NessusAgent-7.6.2-es7.x86_64.rpm nixfilepath="/home/centos/NessusAgent-7.6.2-es7.x86_64.rpm" key=<use your Tenable linking key>
+```
+
+## Bolt Task Usage
+
+The tasks in this repository can be used as well to install the Nessus Agent on Windows or *nix nodes.   In order to use the tasks the file required for install needs to be uploaded to the targets prior to running the tasks.  This can be done using the ``` bolt file upload <src> <dst> --targets ``` command to upload to the targets.
+
+## Task Example Usage
+
+#### **Install and link on Windows targets**
+
+```
+bolt file upload c:\downloads\NessusAgent-7.6.1-x64.msi c:\windows\temp\NessusAgent-7.6.1-x64.msi --targets windows
+bolt task run nessusagent::wininstall --targets windows key=<use your Tenable linking key> installfilepath="c:\windows\temp\NessusAgent-7.6.1-x64.msi"
+```
+
+#### **Install and link on Linux targets**
+
+```
+bolt file upload /tmp/NessusAgent-7.6.2-es7.x86_64.rpm /home/centos/NessusAgent-7.6.2-es7.x86_64.rpm --targets linux
+bolt task run nessusagent::wininstall --targets windows key=<use your Tenable linking key> installfilepath="/home/centos/NessusAgent-7.6.2-es7.x86_64.rpm"
 ```
