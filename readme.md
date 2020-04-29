@@ -22,7 +22,7 @@ The Bolt plans and tasks in this repo will install and manage the configurations
         :git => 'https://github.com/moedes/nessus-repo'
     ```
 
-2. Run bolt puppetfile install from the Boltdir directory where the Puppetfile is located.
+2. Run ```bolt puppetfile install``` from the Boltdir directory where the Puppetfile is located.
 3. Save inventory.yaml file for the environment into the same Boltdir directory.
 4. Download OS agents into the Boltdir/site-modules/nessusagent/files directory from Tenable.io download page https://www.tenable.com/downloads/nessus-agents
 
