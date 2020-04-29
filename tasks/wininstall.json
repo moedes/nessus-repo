@@ -9,6 +9,19 @@
         "key":{
             "description": "The cloud link key for Tenable.",
             "type": "String"
+        },
+        "nessus_group": {
+            "description": "The Tenable Host Group to which the agents should be added",
+            "type": "Optional[String]"
+        },
+        "nessus_name": {
+            "description": "An optional name to pass to your Temable instance for the node on which the agent is being installed",
+            "type": "Optional[String]"
+        },
+        "nessus_server": {
+            "description": "The hostname:port information for the Tenable instance to which you want to link the agent.",
+            "type": "String",
+            "default": "cloud.tenable.com:443"
         }
            
     }
