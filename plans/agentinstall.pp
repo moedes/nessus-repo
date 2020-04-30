@@ -9,6 +9,10 @@ plan nessusagent::agentinstall(
   String               $key,
 ){
   
+  if ! $nixsource and ! $nixfilepath and ! $winsource and ! $winfilepath {
+    fail("Expects either a nix source and filepath, a windows source and filepath, or a source and filepath for both")
+  }
+  
   run_plan(facts, targets => $targets)
   
   $centos_targets = get_targets($targets).filter |$centos| {$centos.facts['os']['name'] == 'CentOS'}
