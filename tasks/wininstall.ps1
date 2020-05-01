@@ -1,7 +1,5 @@
-param (
-    [Parameter(Mandatory)]
-    $action
-)
+#This Script aims to install the Tenable Nessus Agent on Windows Hosts and link to the Tenable instance with being added to the
+#appropriate groups in Tenable.
 
 function Nessus-Install {
     param (
@@ -36,6 +34,11 @@ function Nessus-Unlink {
     #Unlink Agent
     start-process -filepath "c:\program files\tenable\nessus agent\nessuscli.exe" -ArgumentList $connectargs -Wait
 }
+
+param (
+    [Parameter(Mandatory)]
+    $action
+)
 
 if ($action -eq "install") {
     Nessus-Install
