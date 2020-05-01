@@ -39,7 +39,7 @@ plan nessusagent::agentinstall(
       $windows_targets,
       installfilepath => $winfilepath,
       key => $key,
-      server => "$host":"port"
+      server => "${host}:${port}"
     )
   }
 }
