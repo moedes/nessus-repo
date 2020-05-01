@@ -2,18 +2,13 @@
     "description": "This will install the specified Nessus Agent on a Windows machine",
     "input_method": "powershell",
     "parameters": {
-        "action":{
-            "description": "Either install or unlink",
-            "type": "String",
-            "default": "install"
-        },
         "installfilepath":{
             "description": "The file name and location used to install agent.  Requires a full path to the file.",
-            "type": "Optional[String]"
+            "type": "String"
         },
         "key":{
             "description": "The cloud link key for Tenable.",
-            "type": "Optional[String]"
+            "type": "String"
         }
            
     }
