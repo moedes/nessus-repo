@@ -1,4 +1,4 @@
-param ($installfilepath,$key,$nessus_server)
+param ($installfilepath,$key,$server)
 
 #Arguements for installation of the agent
 
@@ -9,11 +9,9 @@ start-process -filepath "msiexec"  -ArgumentList $installargs -Wait
 
 #Arguements for linking the agent
 #$connectargs =  "agent link --cloud --key=" + $key 
-$connectargs =  "agent link NESSUS_SERVER=$nessus_server --key=" + $key 
+$connectargs =  "agent link NESSUS_SERVER=$server --key=" + $key 
 
 #Link Agent
 start-process -filepath "c:\program files\tenable\nessus agent\nessuscli.exe" -ArgumentList $connectargs -Wait
 
 $delfile = if (Test-Path -LiteralPath $installfilepath) {Remove-Item $installfilepath}
-
-
