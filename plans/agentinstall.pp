@@ -18,26 +18,28 @@ plan nessusagent::agentinstall(
   $centos_targets = get_targets($targets).filter |$centos| {$centos.facts['os']['name'] == 'CentOS'}
   $windows_targets = get_targets($targets).filter |$win| {$win.facts['os']['name'] == "windows"}
 
- if $nixsource and $nixfilepath {
+  if $nixsource and $nixfilepath {
    
-   upload_file($nixsource, $nixfilepath, $centos_targets, "Uploading to... ${nixfilepath}")
+    upload_file($nixsource, $nixfilepath, $centos_targets, "Uploading to... ${nixfilepath}")
 
-   run_task(
-     'nessusagent::nixinstall',
-     $centos_targets,
-     key => $key,
-     nixfilepath => $nixfilepath)
- }
+    run_task(
+      'nessusagent::nixinstall',
+      $centos_targets,
+      key => $key,
+      nixfilepath => $nixfilepath
+    )
+  }
   
- if $winsource and $winfilepath {
+  if $winsource and $winfilepath {
     
-   upload_file($winsource, $winfilepath, $windows_targets, "Uploading to... ${winfilepath}")
+    upload_file($winsource, $winfilepath, $windows_targets, "Uploading to... ${winfilepath}")
 
-   run_task(
-     'nessusagent::wininstall',
-     $windows_targets,
-     installfilepath => $winfilepath,
-     key => $key),
-     server => "$host":"port"
- }
+    run_task(
+      'nessusagent::wininstall',
+      $windows_targets,
+      installfilepath => $winfilepath,
+      key => $key,
+      server => "$host":"port"
+    )
+  }
 }
