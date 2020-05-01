@@ -6,6 +6,7 @@ plan nessusagent::agentinstall(
   Optional[String]     $nixsource = undef,
   Optional[String]     $port = "443",
   Optional[String]     $host = "cloud.tenable.com",
+  Optional[String]     $groups = undef,
   String               $key,
 ){
   
@@ -44,6 +45,7 @@ plan nessusagent::agentinstall(
      $windows_targets,
      installfilepath => $winfilepath,
      #nessus_server => "$host:$port",
-     key => $key)
+     key => $key,
+     groups => $groups)
  }
 }
