@@ -15,10 +15,14 @@ plan nessusagent::agentinstall(
   
   run_plan(facts, targets => $targets)
   
+  get_targets($targets).each |$target| {
+    out::message($target.facts['os']['family'])
+  }
+
   $centos_targets = get_targets($targets).filter |$centos| {$centos.facts['os']['name'] == 'CentOS'}
   $windows_targets = get_targets($targets).filter |$win| {$win.facts['os']['name'] == "windows"}
 
- if $nixsource and $nixfilepath {
+  if $nixsource and $nixfilepath {
    
    upload_file($nixsource, $nixfilepath, $centos_targets, "Uploading to... ${nixfilepath}")
 

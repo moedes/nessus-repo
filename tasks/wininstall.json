@@ -14,6 +14,10 @@
         "key":{
             "description": "The cloud link key for Tenable.",
             "type": "Optional[String]"
+        },
+        "groups":{
+            "description": "Groups to add the agent too in Tenable",
+            "type": "Optional[String]"
         }
            
     }

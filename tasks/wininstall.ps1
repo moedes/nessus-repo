@@ -9,7 +9,10 @@ param (
     [string] $installfilepath,
         
     [Parameter(Mandatory=$false)]
-    [string] $key
+    [string] $key,
+
+    [Parameter(Mandatory=$false)]
+    [string] $groups
 )
 
 function Nessus-Install {
@@ -18,10 +21,8 @@ function Nessus-Install {
     param (
     
       [Parameter(Mandatory=$true)]    
-      [string] $installfilepath,
+      [string] $installfilepath
          
-      [Parameter(Mandatory=$true)]
-      [string] $key
     )
         
     #Arguements for installation of the agent
@@ -30,9 +31,20 @@ function Nessus-Install {
 
     #Install Agent
     start-process -filepath "msiexec"  -ArgumentList $installargs -PassThru -Wait
+}
+
+function Nessus-Link {
+    [CmdletBinding()]
+
+    param (
+    
+      [Parameter(Mandatory=$true)]    
+      [string] $key
+
+    )
 
     #Arguements for linking the agent
-    $connectargs =  "agent link --cloud --key=" + $key + " --groups='Windows Servers - Mozes'"
+    $connectargs =  "agent link --cloud --key=" + $key + " --groups=""${groups}"""
 
     #Link Agent
     start-process -filepath "c:\program files\tenable\nessus agent\nessuscli.exe" -ArgumentList $connectargs -PassThru -Wait
@@ -42,6 +54,7 @@ function Nessus-Install {
 
 function Nessus-Unlink {
     [CmdletBinding()]
+    
     #Arguements for linking the agent
     $connectargs =  "agent unlink"
     
@@ -50,9 +63,12 @@ function Nessus-Unlink {
 }
 
 if ($action -eq "install") {
-    Nessus-Install -installfilepath $installfilepath -key $key
+    Nessus-Install -installfilepath $installfilepath
+    Nessus-Link -key $key
 } elseif ($action -eq "unlink") {
     Nessus-Unlink
+} elseif ($action -eq "link") {
+    Nessus-Link -key $key
 } else {
-    Write-Host "Invalid action!  Please use install or unlink for action"
+    Write-Host "Invalid action!  Please use install, link, or unlink for action"
 }
