@@ -2,13 +2,18 @@
     "description": "This will install the specified Nessus Agent on a *nix machine",
     "input_method": "environment",
     "parameters": {
+        "action":{
+            "description": "Action to perform.  Either install or unlink are valid.",
+            "type": "String",
+            "default": "install"
+        },
         "key":{
             "description": "The linking key for your Tenable instance",
-            "type": "String"
+            "type": "Optional[String]"
         },
         "nixfilepath": {
             "description": "The path to the install file",
-            "type": "String"
+            "type": "Optional[String]"
         },
         "nessus_group": {
             "description": "The Tenable Host Group to which the agents should be added",
