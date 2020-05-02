@@ -50,7 +50,10 @@ function Nessus-Link {
     param (
     
       [Parameter(Mandatory=$true)]    
-      [string] $key
+      [string] $key,
+
+      [Parameter(Mandatory=$true)]
+      [string] $groups
 
     )
 
@@ -72,16 +75,16 @@ function Nessus-Unlink {
     $connectargs =  "agent unlink"
     
     #Unlink Agent
-    start-process -filepath "c:\program files\tenable\nessus agent\nessuscli.exe" -ArgumentList $connectargs -PassThru -Wait
+    start-process -filepath "c:\program files\tenable\nessus agent\nessuscli.exe" -ArgumentList $connectargs -Wait
 }
 
 if ($action -eq "install") {
     Nessus-Install -installfilepath $installfilepath # Install Nessus Agent
-    Nessus-Link -key $key                            # Link Nessus Agent
+    Nessus-Link -key $key -groups $groups            # Link Nessus Agent
 } elseif ($action -eq "unlink") {
     Nessus-Unlink                                    # Unlink Nessus Agent
 } elseif ($action -eq "link") {
-    Nessus-Link -key $key                            # Link Nessus Agent
+    Nessus-Link -key $key -groups $groups            # Link Nessus Agent
 } else {
     Write-Host "Invalid action!  Please use install, link, or unlink for action"
 }
