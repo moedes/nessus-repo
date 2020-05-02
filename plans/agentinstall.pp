@@ -1,5 +1,6 @@
 plan nessusagent::agentinstall(
   TargetSpec           $targets,
+  String               $action = "install",
   Optional[String]     $winsource = undef,
   Optional[String]     $winfilepath = undef,
   Optional[String]     $nixfilepath = undef,
@@ -10,9 +11,9 @@ plan nessusagent::agentinstall(
   String               $key,
 ){
   
-  if ! $nixsource and ! $nixfilepath and ! $winsource and ! $winfilepath {
+  /* if ! $nixsource and ! $nixfilepath and ! $winsource and ! $winfilepath {
     fail("Expects either a nix source and filepath, a windows source and filepath, or a source and filepath for both")
-  }
+  } */
   
   run_plan(facts, targets => $targets)
   
@@ -33,7 +34,9 @@ plan nessusagent::agentinstall(
      key => $key,
      host => $host,
      port => $port,
-     nixfilepath => $nixfilepath)
+     nixfilepath => $nixfilepath,
+     groups => $groups,
+     action => $action)
  }
   
  if $winsource and $winfilepath{
@@ -46,6 +49,7 @@ plan nessusagent::agentinstall(
      installfilepath => $winfilepath,
      #nessus_server => "$host:$port",
      key => $key,
-     groups => $groups)
+     groups => $groups,
+     action => $action)
  }
 }
