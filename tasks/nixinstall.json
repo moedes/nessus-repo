@@ -15,7 +15,7 @@
             "description": "The path to the install file",
             "type": "Optional[String]"
         },
-        "nessus_group": {
+        "groups": {
             "description": "The Tenable Host Group to which the agents should be added",
             "type": "Optional[String]"
         },
