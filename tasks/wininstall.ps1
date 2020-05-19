@@ -52,7 +52,7 @@ function Nessus-Link {
       [Parameter(Mandatory=$true)]    
       [string] $key,
 
-      [Parameter(Mandatory=$true)]
+      [Parameter(Mandatory=$false)]
       [string] $groups
 
     )
