@@ -78,6 +78,8 @@ function Nessus-Unlink {
     start-process -filepath "c:\program files\tenable\nessus agent\nessuscli.exe" -ArgumentList $connectargs -Wait
 }
 
+# Logic to install and link, unlink, or link the nessus agent
+
 if ($action -eq "install") {
     Nessus-Install -installfilepath $installfilepath # Install Nessus Agent
     Nessus-Link -key $key -groups $groups            # Link Nessus Agent
